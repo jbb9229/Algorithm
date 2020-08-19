@@ -1,4 +1,4 @@
-package braket_conversion;
+package programmers.braket_conversion;
 
 /**
  * 2020 KAKAO BLIND RECRUITMENT

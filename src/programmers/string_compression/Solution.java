@@ -1,4 +1,4 @@
-package string_compression;
+package programmers.string_compression;
 
 import java.util.ArrayList;
 import java.util.Collections;
