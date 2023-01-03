@@ -1,4 +1,4 @@
-package inflearn.string.reverseWord;
+package inflearn.string.flipCharacters;
 
 import java.util.ArrayList;
 import java.util.List;
