@@ -1,67 +1,35 @@
 package inflearn.string.flipSpecificCharacters;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Main {
 
-//    public String flipSpecificCharacters(String str) {
-//        String answer = "";
-//
-//        List<Integer> specificsIndex = new ArrayList<>();
-//        List<Character> alpabets = new ArrayList<>();
-//
-//        for (int i = 0; i < str.length(); i++) {
-//            char ch = str.charAt(i);
-//            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
-//                alpabets.add(ch);
-//            } else {
-//                specificsIndex.add(i);
-//            }
-//        }
-//
-//        int index = alpabets.size() - 1;
-//        for (int i = 0; i < str.length(); i++) {
-//            if (specificsIndex.contains(i)) {
-//                answer += str.charAt(i);
-//            } else {
-//                answer += alpabets.get(index);
-//                index--;
-//            }
-//        }
-//
-//        return answer;
-//    }
-
-    public String flipSpecificCharacters(String str) {
-        String answer = "";
-
-        Stack<Character> characterStack = new Stack<>();
-        char[] replaceSpecific = str.replaceAll("[^a-zA-Z]", "").toCharArray();
-        for (char alphabet : replaceSpecific) {
-            characterStack.push(alphabet);
-        }
-
-
-        for (int i = 0; i < str.length(); i++) {
-            char ch = str.charAt(i);
-            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
-                answer += characterStack.pop();
+    public String solution(String str) {
+        String answer;
+        char[] s = str.toCharArray();
+        int lt = 0, rt = str.length() - 1;
+        while(lt < rt) {
+            if (!Character.isAlphabetic(s[lt])) {
+                lt++;
+            } else if (!Character.isAlphabetic(s[rt])) {
+                rt--;
             } else {
-                answer += str.charAt(i);
+                char tmp = s[lt];
+                s[lt] = s[rt];
+                s[rt] = tmp;
+                lt++;
+                rt--;
             }
         }
-
+        answer = String.valueOf(s);
         return answer;
     }
 
-    public static void main(String[] args){
-        Scanner in=new Scanner(System.in);
-        String input = in.nextLine();
-        Main m = new Main();
-        System.out.println(m.flipSpecificCharacters(input));
-        return ;
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        String str = kb.next();
+        System.out.println(T.solution(str));
     }
+
 }

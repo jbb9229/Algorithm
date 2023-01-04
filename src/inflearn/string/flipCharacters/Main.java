@@ -1,30 +1,38 @@
 package inflearn.string.flipCharacters;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args){
-        Scanner in = new Scanner(System.in);
-        int wordCount = in.nextInt();
-        List<String> words = new ArrayList<>();
-        for (int i = 0; i < wordCount; i++) {
-            words.add(in.next());
+    public static void main(String[] args) {
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int n = kb.nextInt();
+        String[] str = new String[n];
+        for (int i = 0; i < n; i++) {
+            str[i] = kb.next();
         }
-        Main m = new Main();
-        words.forEach(word -> System.out.println(m.reverseWord(word)));
-        return ;
+        for (String x : T.solution(n, str)) {
+            System.out.println(x);
+        }
     }
 
-    private String reverseWord(String input) {
-        String answer = "";
-
-        for (int i=input.length()-1; i>=0; i--) {
-            answer += input.charAt(i);
+    private ArrayList<String> solution(int n, String[] str) {
+        ArrayList<String> answer = new ArrayList<>();
+        for (String x : str) {
+            char[] s = x.toCharArray();
+            int lt = 0, rt = x.length() - 1;
+            while (lt < rt) {
+                char tmp = s[lt];
+                s[lt] = s[rt];
+                s[rt] = tmp;
+                lt++;
+                rt--;
+            }
+            String tmp = String.valueOf(s);
+            answer.add(tmp);
         }
-
         return answer;
     }
 
